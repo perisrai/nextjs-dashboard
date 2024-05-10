@@ -35,7 +35,7 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
-  unstable_noStore();
+  // unstable_noStore();
 
   try {
     const data = await sql<LatestInvoiceRaw>`
@@ -49,6 +49,8 @@ export async function fetchLatestInvoices() {
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
+
+    console.log('Latest invoices', latestInvoices);
     return latestInvoices;
   } catch (error) {
     console.error('Database Error:', error);
@@ -57,7 +59,7 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchCardData() {
-  unstable_noStore();
+  // unstable_noStore();
 
   try {
     // You can probably combine these into a single SQL query
